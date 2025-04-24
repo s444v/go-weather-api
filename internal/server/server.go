@@ -15,12 +15,13 @@ type Server struct {
 
 func NewServer(logger *log.Logger) *Server {
 	mux := http.NewServeMux()
-
 	mux.HandleFunc("/", handlers.MainHandler)
 	mux.HandleFunc("/weather", handlers.UploadHandler)
+	fs := http.FileServer(http.Dir("static"))
+	mux.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	httpServer := &http.Server{
-		Addr:         "127.0.0.1:5500",
+		Addr:         ":8080",
 		Handler:      mux,
 		ErrorLog:     logger,
 		ReadTimeout:  5 * time.Second,
