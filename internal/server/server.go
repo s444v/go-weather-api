@@ -16,7 +16,7 @@ type Server struct {
 func NewServer(logger *log.Logger) *Server {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.MainHandler)
-	mux.HandleFunc("/weather", handlers.UploadHandler)
+	mux.HandleFunc("/weather", handlers.WeatherHandler)
 	fs := http.FileServer(http.Dir("static"))
 	mux.Handle("/static/", http.StripPrefix("/static/", fs))
 
