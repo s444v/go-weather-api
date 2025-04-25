@@ -15,7 +15,7 @@ const GetCountryURL = "http://api.openweathermap.org/geo/1.0/direct"
 // http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 type Geocoding struct {
 	Name       string            `json:"name"`
-	LocalNames map[string]string `json:"local_names,omitempty"` // если поле отсутствует, не сериализуется
+	LocalNames map[string]string `json:"local_names,omitempty"`
 	Lat        float64           `json:"lat"`
 	Lon        float64           `json:"lon"`
 	Country    string            `json:"country"`
@@ -67,10 +67,6 @@ type WeatherResponse struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
 	Cod      int    `json:"cod"`
-}
-
-func Detector(s string) string {
-	return "clean"
 }
 
 func GeocodingCountryName(country string) ([]Geocoding, error) {
